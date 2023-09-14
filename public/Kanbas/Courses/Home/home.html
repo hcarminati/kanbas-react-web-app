@@ -6,12 +6,13 @@
 </head>
 <body>
 <table width="100%">
+    <tbody>
     <tr valign="baseline">
         <td>
             <ul>
-                <li><a href="profile/index.html">Account</a></li>
+                <li><a href="../../Account/accountnavigation.html">Account</a></li>
                 <li><a href="#">Dashboard</a></li>
-                <li><a href="home.html">Courses</a></li>
+                <li><a href="../coursesnavigation.html">Courses</a></li>
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Inbox</a></li>
                 <li><a href="#">History</a></li>
@@ -26,9 +27,9 @@
                 <li><a href="#">Modules</a></li>
                 <li><a href="#">Piazza</a></li>
                 <li><a href="#">Zoom Meetings</a></li>
-                <li><a href="assignments/index.html">Assignments</a></li>
+                <li><a href="../Assignments/index.html">Assignments</a></li>
                 <li><a href="#">Quizzes</a></li>
-                <li><a href="grades.html">Grades</a></li>
+                <li><a href="../Grades/grades.html">Grades</a></li>
                 <li><a href="#">People</a></li>
                 <li><a href="#">Panopto Video</a></li>
                 <li><a href="#">Discussions</a></li>
@@ -39,14 +40,17 @@
                 <li><a href="#">Outcomes</a></li>
                 <li><a href="#">Collaborations</a></li>
                 <li><a href="#">Syllabus</a></li>
-                <li><a href="settings/coursedetails.html">Settings</a></li>
+                <li><a href="../Settings/coursedetails.html">Settings</a></li>
             </ul>
         </td>
         <td>
             <button type="button">Collapse All</button>
             <button type="button">View Progress</button>
             <select>
-                <option selected value="COMEDY">Publish All</option>
+                <option selected value="PUBLISHALL">Publish All</option>
+                <option value="PUBLISHALLMODULESITEMS">Publish All modules and items</option>
+                <option value="PUBLISHMODULESONLY">Publish modules only</option>
+                <option value="UNPUBLISHALL">UnPublish All</option>
             </select>
             <button type="button">Module</button>
             <ul>
@@ -131,6 +135,7 @@
             </ul>
         </td>
     </tr>
+    </tbody>
 </table>
 </body>
 </html>
