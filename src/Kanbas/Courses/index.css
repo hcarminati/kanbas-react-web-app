@@ -1,0 +1,8 @@
+.title-content {
+    padding: 0px 20px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    font-family: 'FontAwesome';
+    content: "\f105";
+}
