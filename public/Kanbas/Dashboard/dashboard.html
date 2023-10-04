@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="wd-flex-row-container">
-    <div id="account-sidebar" class="position-sticky">
+    <div id="account-sidebar" class="position-sticky d-none d-sm-block">
         <ul class="nav flex-column">
             <li class="nav-item">
                 <img class="square-image" src="../assets/northeastern_logo.jpg"
@@ -84,7 +84,10 @@
     </div>
     <div id="dashboard-content" class="wd-flex-grow-1">
         <div class="title-content">
-            <h3>Dashboard</h3>
+            <h3 class="d-none d-sm-block mt-2">Dashboard</h3>
+        </div>
+        <div>
+            <i class="fas fa-ellipsis-v m-4 d-block d-sm-none text-dark float-end"></i>
         </div>
         <hr class="header-line"/>
         <div class="public-courses">

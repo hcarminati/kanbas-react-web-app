@@ -108,13 +108,8 @@
     text-decoration: none;
 }
 
-#courses-home-content .breadcrumb {
-    margin: 10px;
-}
-
 #home-content {
     margin: 0px 20px 0px 20px;
-    /*padding-top: 40px;*/
 }
 
 #home-content .list-indent-1 {
@@ -145,17 +140,17 @@
     margin-left: 2px;
 }
 
-#home-content #module-1 .module-link {
+#home-content .modules .module-link {
     color: red;
     text-decoration: none;
 }
 
-#home-content #module-1 .fa-link {
+#home-content .modules .fa-link {
     color: green;
     margin: 0 10px;
 }
 
-#home-content #module-1 .fa-plus {
+#home-content .modules .fa-plus {
     color: darkgrey;
 }
 
@@ -170,7 +165,7 @@
 }
 
 #course-status .list-unstyled * {
-    margin-bottom: 1px;
+    text-align: left;
 }
 
 #course-status .to-do-top-row-text {
