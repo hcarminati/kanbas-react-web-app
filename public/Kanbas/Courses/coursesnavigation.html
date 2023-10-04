@@ -3,50 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <title>Kanbas</title>
+    <link href="coursesnavigation.css"
+          rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.css" rel="stylesheet">
 </head>
 <body>
-<table width="100%">
-    <tbody>
-    <tr valign="baseline">
-        <td>
-            <ul>
-                <li><a href="../Account/accountnavigation.html">Account</a></li>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="coursesnavigation.html">Courses</a></li>
-                <li><a href="#">Calendar</a></li>
-                <li><a href="#">Inbox</a></li>
-                <li><a href="#">History</a></li>
-                <li><a href="#">Studio</a></li>
-                <li><a href="#">Commons</a></li>
-                <li><a href="#">Help</a></li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li><a href="Home/home.html">Home</a></li>
-                <li><a href="#">Modules</a></li>
-                <li><a href="#">Piazza</a></li>
-                <li><a href="#">Zoom Meetings</a></li>
-                <li><a href="Assignments/index.html">Assignments</a></li>
-                <li><a href="#">Quizzes</a></li>
-                <li><a href="grades.html">Grades</a></li>
-                <li><a href="#">People</a></li>
-                <li><a href="#">Panopto Video</a></li>
-                <li><a href="#">Discussions</a></li>
-                <li><a href="#">Announcements</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">Files</a></li>
-                <li><a href="#">Rubrics</a></li>
-                <li><a href="#">Outcomes</a></li>
-                <li><a href="#">Collaborations</a></li>
-                <li><a href="#">Syllabus</a></li>
-                <li><a href="Settings/coursedetails.html">Settings</a></li>
-            </ul>
-        </td>
-        <td width="100%">
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="wd-flex-row-container">
+    <div id="account-sidebar" class="position-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <img class="square-image" src="../assets/northeastern_logo.jpg"
+                     alt="Northeastern Logo">
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../Account/accountnavigation.html">
+                    <i class="fas fa-user account-icon"></i>
+                    Account
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../Dashboard/dashboard.html">
+                    <i class="fas fa-dashboard"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="coursesnavigation.html">
+                    <i class="fas fa-book"></i>
+                    Courses
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-calendar"></i>
+                    Calendar
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-inbox"></i>
+                    Inbox
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-clock"></i>
+                    History
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-computer"></i>
+                    Studio
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-arrow-right"></i>
+                    Commons
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-question"></i>
+                    Help
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="navigation-sidebar" class="position-sticky">
+        <ul class="nav flex-column">
+
+            <li class="nav-item">
+                <a class="nav-link" href="Home/home.html">
+                    Home
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Modules
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Piazza
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Zoom Meetings
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="Assignments/Index/index.html">
+                    Assignments
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Quizzes
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="Grades/grades.html">
+                    Grades
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    People
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Panopto Video
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Discussions
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Announcements
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Pages
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Files
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Rubrics
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Outcomes
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Collaborations
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Syllabus
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Progress Reports (EAB Navigate)
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="Settings/coursedetails.html">
+                    Settings
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
 </body>
 </html>
