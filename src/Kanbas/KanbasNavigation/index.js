@@ -35,7 +35,11 @@ function KanbasNavigation() {
             {links.map((link, index) => (
                 <Link
                     key={index}
-                    to={`/Kanbas/${link.name}`}
+                    to={
+                        link.name === "Courses"
+                        ? `/Kanbas/${link.name}/RS101`
+                        : `/Kanbas/${link.name}`
+                    }
                     className={`list-group-item nav-link ${pathname.includes(link.name)
                                                            ? 'active' : ''}`}
                 >

@@ -16,7 +16,7 @@ function Dashboard() {
                 <hr/>
             </div>
 
-            <div className="public-courses">
+            <div className="courses-content">
                 <h4>Published Courses ({db.courses.length})</h4>
                 <hr/>
                 <div className="list-group d-flex flex-row flex-wrap">
