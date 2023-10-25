@@ -19,14 +19,14 @@ import './index.css';
 import MainNavigation from "./TopNavigationBar/MainNavigation";
 import SecondCourseNavigation from "./TopNavigationBar/SecondCourseNavigation";
 
-function Courses() {
+function Courses({courses}) {
     const {courseId} = useParams();
     const {pathname} = useLocation();
     const pathSegments = pathname.split("/");
     const lastParam = pathSegments[pathSegments.length - 1];
     const decodedLastParam = decodeURIComponent(lastParam.replace(/\+/g, " "));
 
-    const course = db.courses.find((course) => course._id === courseId);
+    const course = courses.find((course) => course._id === courseId);
 
     const [divsVisible, setDivsVisible] = useState(true);
     const [mainNavigationVisible, setMainNavigationVisible] = useState(false);
@@ -72,7 +72,7 @@ function Courses() {
                     </div>
                     <div className="ms-4 mt-4">
                         <div className="d-flex">
-                            <CourseNavigation divsVisible={true}/>
+                            <CourseNavigation courses={courses} divsVisible={true}/>
                             <div className="courses-content-container">
                                 <Routes>
                                     <Route path="/" element={<Navigate to="Home"/>}/>

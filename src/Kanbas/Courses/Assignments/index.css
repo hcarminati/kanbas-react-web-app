@@ -3,7 +3,23 @@
     padding: 0px 5px;
 }
 
-.search-bar {
-    width: 125px;
-    background-color: orange;
+
+.right-input {
+    width: 500px;
+}
+
+.right-input-card {
+    width: 476px;
+}
+
+.card-input {
+    width: 250px;
+}
+
+.card-assign-to-add {
+    background-color: lightgrey;
+}
+
+.card-assign-body {
+    height: 100%;
 }
