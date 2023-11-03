@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-function CourseNavigation() {
+function CourseNavigation({courses}) {
 
     const links = ["Home", "Modules", "Piazza", "Zoom Meetings", "Assignments", "Quizzes", "Grades",
                    "People", "Panopto Video", "Discussions", "Announcements", "Pages", "Files",
@@ -14,7 +14,8 @@ function CourseNavigation() {
     const {courseId} = useParams();
     const {pathname} = useLocation();
 
-    const course = db.courses.find((course) => course._id === courseId);
+    const course = courses.find((course) => course._id === courseId);
+
     return (
         <div className="list-group courses-nav-container d-none d-sm-block">
             <p className="nav-container-top-text">

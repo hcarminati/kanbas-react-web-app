@@ -12,13 +12,25 @@ import {
     faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import './index.css';
+import {useDispatch, useSelector} from "react-redux";
+import {deleteAssignment} from "./assignmentsReducer";
 
 function Assignments() {
     const {courseId} = useParams();
-    const assignments = db.assignments;
+    const assignments = useSelector((state) => state.assignmentsReducer.assignments);
     const courseAssignments = assignments.filter(
         (assignment) => assignment.course === courseId
     );
+    const dispatch = useDispatch();
+
+    function handleDeleteAssignment(e, assignmentId) {
+        e.preventDefault();
+        const confirmation = window.confirm("Are you sure you want to delete this assignment?");
+        if (confirmation) {
+            dispatch(deleteAssignment(assignmentId));
+        }
+    }
+
     return (
         <div>
             <div className="title-content">
@@ -29,13 +41,14 @@ function Assignments() {
                         id="search"
                         placeholder="Search for Assignment"
                     ></input>
-                    <a className="btn btn-danger me-2" role="button">
+                    <Link to={`/Kanbas/Courses/${courseId}/Assignments/NewAssignment`}
+                          className="btn btn-danger d-flex align-items-center me-2" role="button">
                         <FontAwesomeIcon className="me-1" icon={faPlus}/>
-                        Assignment
-                    </a>
-                    <a className="btn btn-secondary me-2" role="button">
+                        <span>Assignment</span>
+                    </Link>
+                    <a className="btn btn-secondary d-flex align-items-center me-2" role="button">
                         <FontAwesomeIcon className="me-1" icon={faPlus}/>
-                        Group
+                        <span>Group</span>
                     </a>
                     <a className="btn btn-secondary" role="button">
                         <FontAwesomeIcon icon={faEllipsisV}/>
@@ -53,16 +66,16 @@ function Assignments() {
                             icon={faGripVertical}
                         ></FontAwesomeIcon>
                         <FontAwesomeIcon icon={faCaretDown}></FontAwesomeIcon>
-                        <h6 class="ms-2 mt-3">ASSIGNMENTS</h6>
+                        <h6 className="ms-2 mt-3">ASSIGNMENTS</h6>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <p class="percent-total float-end me-2 mt-3 rounded-pill">
+                    <div className="d-flex align-items-center">
+                        <p className="percent-total float-end me-2 mt-3 rounded-pill">
                             40% of Total
                         </p>
-                        <FontAwesomeIcon
-                            className="me-2 float-end"
-                            icon={faPlus}
-                        ></FontAwesomeIcon>
+                        <Link to={`/Kanbas/Courses/${courseId}/Assignments/NewAssignment`}
+                              className="me-2 float-end text-secondary">
+                            <FontAwesomeIcon icon={faPlus}/>
+                        </Link>
                         <FontAwesomeIcon
                             className="text-secondary"
                             icon={faEllipsisV}
@@ -70,43 +83,49 @@ function Assignments() {
                     </div>
                 </Link>
                 {courseAssignments.map((assignment) => (
-                    <Link
-                        key={assignment._id}
-                        to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}
-                        className="list-group-item"
-                    >
-                        <div className="row mt-2">
-                            <div className="col-2">
-                                <FontAwesomeIcon
-                                    className="me-2"
-                                    icon={faGripVertical}
-                                ></FontAwesomeIcon>
-                                <FontAwesomeIcon
-                                    className="text-success"
-                                    icon={faPenToSquare}
-                                ></FontAwesomeIcon>
-                            </div>
-                            <div className="col-8">
-                                <h6> {assignment.title}</h6>
-                                <div className="d-flex align-items-center">
-                                    <p className="text-danger">Multiple Modules</p>
-                                    <p className="mx-2">|</p>
-                                    <p className="fw-bold me-2">Due</p>
-                                    <p>{assignment.due} | 100pts</p>
+                    <div>
+                        <Link
+                            key={assignment._id}
+                            to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}
+                            className="list-group-item"
+                        >
+                            <div className="row mt-2">
+                                <div className="col-2">
+                                    <FontAwesomeIcon
+                                        className="me-2"
+                                        icon={faGripVertical}
+                                    ></FontAwesomeIcon>
+                                    <FontAwesomeIcon
+                                        className="text-success"
+                                        icon={faPenToSquare}
+                                    ></FontAwesomeIcon>
+                                </div>
+                                <div className="col-8">
+                                    <h6> {assignment.title}</h6>
+                                    <div className="d-flex align-items-center">
+                                        <p className="text-danger">Multiple Modules</p>
+                                        <p className="mx-2">|</p>
+                                        <p className="fw-bold me-2">Due</p>
+                                        <p>{assignment.due} | {assignment.points}pts</p>
+                                    </div>
+                                </div>
+                                <div className="col-2">
+                                    <FontAwesomeIcon
+                                        className="text-secondary float-end"
+                                        icon={faEllipsisV}
+                                    ></FontAwesomeIcon>
+                                    <FontAwesomeIcon
+                                        className="text-success me-2 float-end"
+                                        icon={faCircleCheck}
+                                    ></FontAwesomeIcon>
                                 </div>
                             </div>
-                            <div className="col-2">
-                                <FontAwesomeIcon
-                                    className="text-secondary float-end"
-                                    icon={faEllipsisV}
-                                ></FontAwesomeIcon>
-                                <FontAwesomeIcon
-                                    className="text-success me-2 float-end"
-                                    icon={faCircleCheck}
-                                ></FontAwesomeIcon>
-                            </div>
-                        </div>
-                    </Link>
+                            <button className="btn btn-danger"
+                                    onClick={(e) => handleDeleteAssignment(e, assignment._id)}>
+                                Delete
+                            </button>
+                        </Link>
+                    </div>
                 ))}
             </div>
         </div>

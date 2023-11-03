@@ -15,7 +15,7 @@ import {
 import "./index.css";
 import northeastern_logo from "../assets/northeastern_logo.jpg";
 
-function KanbasNavigation() {
+function KanbasNavigation({courses}) {
     const links = [
         {name: "Account", icon: faUser},
         {name: "Dashboard", icon: faDashboard},
@@ -37,7 +37,7 @@ function KanbasNavigation() {
                     key={index}
                     to={
                         link.name === "Courses"
-                        ? `/Kanbas/${link.name}/RS101`
+                        ? `/Kanbas/${link.name}/${courses[0]._id}`
                         : `/Kanbas/${link.name}`
                     }
                     className={`list-group-item nav-link ${pathname.includes(link.name)

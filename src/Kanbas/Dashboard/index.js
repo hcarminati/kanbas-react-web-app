@@ -1,11 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import db from "../Database";
-import {faEllipsisV, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
+import {faDeleteLeft, faEllipsisV, faPenToSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-function Dashboard() {
+function Dashboard({
+                       courses, course, setCourse, addNewCourse,
+                       deleteCourse, updateCourse
+                   }) {
+
     return (
         <div>
             <div className="title-content">
@@ -17,10 +21,29 @@ function Dashboard() {
             </div>
 
             <div className="courses-content">
-                <h4>Published Courses ({db.courses.length})</h4>
+                <h5>Course</h5>
+                <input value={course.name} className="form-control"
+                       onChange={(e) => setCourse({...course, name: e.target.value})}/>
+                <input value={course.number} className="form-control"
+                       onChange={(e) => setCourse({...course, number: e.target.value})}/>
+                <input value={course.startDate} className="form-control" type="date"
+                       onChange={(e) => setCourse({...course, startDate: e.target.value})}/>
+                <input value={course.endDate} className="form-control" type="date"
+                       onChange={(e) => setCourse({...course, endDate: e.target.value})}/>
+                <button className="btn btn-success me-1"
+                        onClick={addNewCourse}>
+                    Add
+                </button>
+                <button className="btn btn-primary"
+                        onClick={updateCourse}>
+                    Update
+                </button>
+
+
+                <h4>Published Courses ({courses.length})</h4>
                 <hr/>
                 <div className="list-group d-flex flex-row flex-wrap">
-                    {db.courses.map((course) => (
+                    {courses.map((course) => (
                         <div className="card my-3 mx-3">
                             <div className="card-img-top"></div>
                             <div className="vertical-dots">
@@ -39,10 +62,24 @@ function Dashboard() {
                                     <p className="card-text text-muted">
                                         {course.startDate}
                                     </p>
-                                    <FontAwesomeIcon
-                                        className="text-muted mt-2"
-                                        icon={faPenToSquare}
-                                    />
+
+                                    <Link
+                                        className="text-danger me-2"
+                                        onClick={(event) => {
+                                            event.preventDefault();
+                                            deleteCourse(course._id);
+                                        }}>
+                                        <FontAwesomeIcon icon={faTrash}/>
+                                    </Link>
+                                    <Link
+                                        className="text-muted me-2"
+                                        onClick={(event) => {
+                                            event.preventDefault();
+                                            setCourse(course);
+                                        }}>
+                                        <FontAwesomeIcon icon={faPenToSquare}/>
+                                    </Link>
+
                                 </div>
                             </Link>
                         </div>
