@@ -1,8 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
-import db from "../../Database";
 
 const initialState = {
-    assignments: db.assignments,
+    assignments: [],
     assignment: {
         title: "New Title",
         course: "New Course",
@@ -36,6 +35,7 @@ const assignmentsSlice = createSlice({
                                              updateAssignment: (state, action) => {
                                                  state.assignments =
                                                      state.assignments.map((assignment) => {
+                                                         console.log(action.payload._id);
                                                          if (assignment._id
                                                              === action.payload._id) {
                                                              return action.payload;
@@ -48,7 +48,7 @@ const assignmentsSlice = createSlice({
                                                  state.assignment = action.payload;
                                              },
                                              setAssignment: (state, action) => {
-                                                 state.assignment = action.payload;
+                                                 state.assignments = action.payload;
                                              },
                                          },
                                      });

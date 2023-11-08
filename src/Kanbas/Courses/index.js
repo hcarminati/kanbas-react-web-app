@@ -1,4 +1,4 @@
-import db from "../../Kanbas/Database";
+import axios from "axios";
 import {Link, Route, useLocation, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -6,7 +6,7 @@ import {
     faChevronRight,
     faGlasses,
 } from "@fortawesome/free-solid-svg-icons";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CourseNavigation from "./CourseNavigation";
 import Modules from "./Modules";
 import Home from "./Home";
@@ -19,19 +19,30 @@ import './index.css';
 import MainNavigation from "./TopNavigationBar/MainNavigation";
 import SecondCourseNavigation from "./TopNavigationBar/SecondCourseNavigation";
 
-function Courses({courses}) {
+function Courses() {
+    const URL = "http://localhost:4000/api/courses";
+
     const {courseId} = useParams();
     const {pathname} = useLocation();
     const pathSegments = pathname.split("/");
     const lastParam = pathSegments[pathSegments.length - 1];
     const decodedLastParam = decodeURIComponent(lastParam.replace(/\+/g, " "));
 
-    const course = courses.find((course) => course._id === courseId);
+    const [course, setCourse] = useState({});
+    const findCourseById = async (courseId) => {
+        const response = await axios.get(
+            `${URL}/${courseId}`
+        );
+        setCourse(response.data);
+    };
+    useEffect(() => {
+        findCourseById(courseId);
+    }, [courseId]);
 
     const [divsVisible, setDivsVisible] = useState(true);
     const [mainNavigationVisible, setMainNavigationVisible] = useState(false);
     const [courseNavigationVisible, setCourseNavigationVisible] = useState(false);
-
+    console.log("Course: ", `${URL}/${courseId}`);
     return (
         <div>
             <Index divsVisible={divsVisible} setDivsVisible={setDivsVisible}
@@ -72,7 +83,7 @@ function Courses({courses}) {
                     </div>
                     <div className="ms-4 mt-4">
                         <div className="d-flex">
-                            <CourseNavigation courses={courses} divsVisible={true}/>
+                            <CourseNavigation course={course} divsVisible={true}/>
                             <div className="courses-content-container">
                                 <Routes>
                                     <Route path="/" element={<Navigate to="Home"/>}/>

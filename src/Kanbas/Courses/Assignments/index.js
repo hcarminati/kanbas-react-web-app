@@ -1,6 +1,5 @@
 import React from "react";
 import {Link, useParams} from "react-router-dom";
-import db from "../../Database";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faCaretDown,
@@ -13,23 +12,40 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import './index.css';
 import {useDispatch, useSelector} from "react-redux";
-import {deleteAssignment} from "./assignmentsReducer";
+import {
+    addAssignment,
+    deleteAssignment,
+    updateAssignment,
+    setAssignment
+} from "./assignmentsReducer";
+import {useEffect} from "react";
+import * as client from "../Assignments/client";
 
 function Assignments() {
     const {courseId} = useParams();
     const assignments = useSelector((state) => state.assignmentsReducer.assignments);
+    const assignment = useSelector((state) => state.assignmentsReducer.assignment);
     const courseAssignments = assignments.filter(
         (assignment) => assignment.course === courseId
     );
     const dispatch = useDispatch();
 
-    function handleDeleteAssignment(e, assignmentId) {
+    useEffect(() => {
+        client.findAssignmentsForCourse(courseId)
+            .then((assignments) =>
+                      dispatch(setAssignment(assignments))
+            );
+    }, [courseId]);
+
+    const handleDeleteAssignment = (e, assignmentId) => {
         e.preventDefault();
         const confirmation = window.confirm("Are you sure you want to delete this assignment?");
         if (confirmation) {
-            dispatch(deleteAssignment(assignmentId));
+            client.deleteAssignment(assignmentId).then((status) => {
+                dispatch(deleteAssignment(assignmentId));
+            });
         }
-    }
+    };
 
     return (
         <div>

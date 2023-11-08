@@ -8,7 +8,9 @@ import {
     addAssignment,
     setAssignment,
     updateAssignment,
+    deleteAssignment
 } from "../assignmentsReducer";
+import * as client from "../client";
 
 function AssignmentEditor() {
     const {assignmentId} = useParams();
@@ -22,13 +24,23 @@ function AssignmentEditor() {
 
     const [assignment, setAssignment] = useState(assignment_new);
 
+    const handleAddAssignment = () => {
+        client.createAssignment(courseId, assignment).then((assignment) => {
+            dispatch(addAssignment(assignment));
+        });
+    };
+
+    const handleUpdateAssignment = async () => {
+        const status = await client.updateAssignment(assignment);
+        dispatch(updateAssignment(assignment));
+    };
     useEffect(() => {
         if (assignmentId === "NewAssignment") {
             handleNewAssignment();
         } else {
             setAssignment(assignments.find((a) => a._id === assignmentId));
         }
-    }, [assignmentId, assignments]);
+    }, []);
 
     function handleNewAssignment() {
         setIsNewAssignment(true);
@@ -142,13 +154,10 @@ function AssignmentEditor() {
                                 <button
                                     onClick={() =>
                                         isNewAssignment
-                                        ? dispatch(
-                                            addAssignment({
-                                                              ...assignment,
-                                                              _id: new Date().getTime().toString(),
-                                                          })
-                                        )
-                                        : dispatch(updateAssignment(assignment))
+                                        ?
+                                            handleAddAssignment()
+                                        :
+                                        handleUpdateAssignment()
                                     }
                                     className="btn btn-danger ms-2 mt-2"
                                 >
