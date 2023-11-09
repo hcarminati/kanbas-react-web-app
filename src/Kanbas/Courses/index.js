@@ -20,7 +20,8 @@ import MainNavigation from "./TopNavigationBar/MainNavigation";
 import SecondCourseNavigation from "./TopNavigationBar/SecondCourseNavigation";
 
 function Courses() {
-    const URL = "http://localhost:4000/api/courses";
+    const API_BASE = process.env.REACT_APP_API_BASE;
+    const URL = `${API_BASE}/courses`;
 
     const {courseId} = useParams();
     const {pathname} = useLocation();
