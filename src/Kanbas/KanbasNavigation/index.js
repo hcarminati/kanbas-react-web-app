@@ -10,7 +10,7 @@ import {
     faClock,
     faComputer,
     faArrowRight,
-    faQuestionCircle
+    faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 import northeastern_logo from "../assets/northeastern_logo.jpg";
@@ -36,17 +36,18 @@ function KanbasNavigation({courses}) {
                 <Link
                     key={index}
                     to={
-                        link.name === "Courses"
+                        link.name === "Courses" && courses.length > 0
                         ? `/Kanbas/${link.name}/${courses[0]._id}`
                         : `/Kanbas/${link.name}`
                     }
-                    className={`list-group-item nav-link ${pathname.includes(link.name)
-                                                           ? 'active' : ''}`}
+                    className={`list-group-item nav-link ${pathname.includes(link.name) ? "active"
+                                                                                        : ""}`}
                 >
                     <FontAwesomeIcon
-                        className={`icon ${link.name === 'Account' ? 'account-icon' : ''}`}
+                        className={`icon ${link.name === "Account" ? "account-icon" : ""}`}
                         icon={link.icon}
-                    /> {link.name}
+                    />{" "}
+                    {link.name}
                 </Link>
             ))}
         </div>
