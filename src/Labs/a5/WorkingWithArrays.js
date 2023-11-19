@@ -28,33 +28,29 @@ function WorkingWithArrays() {
     };
     const deleteTodo = async (todo) => {
         try {
-            console.log("TRY");
             const response = await axios.delete(
                 `${API}/${todo.id}`);
             setTodos(todos.filter((t) => t.id !== todo.id));
         } catch (error) {
-            console.log(error);
-            setErrorMessage(error.response.data.message);
+            setErrorMessage(`Can't delete todo with id ${todo.id}`);
         }
     };
 
     const updateTodo = async () => {
         try {
-            console.log("TRY");
             const response = await axios.put(
                 `${API}/${todo.id}`, todo);
             setTodos(todos.map((t) => (
                 t.id === todo.id ? todo : t)));
             setTodo({});
         } catch (error) {
-            console.log(error);
-            setErrorMessage(error.response.data.message);
+            setErrorMessage(`Can't update todo with id ${todo.id}`);
         }
     };
 
     const createTodo = async () => {
-        const response = await axios.get(`${API}/create`);
-        setTodos(response.data);
+        const response = await axios.post(API, todo);
+        setTodos([...todos, response.data]);
     };
 
     const fetchTodoById = async (id) => {
@@ -189,6 +185,7 @@ function WorkingWithArrays() {
                     {errorMessage}
                 </div>
             )}
+            {console.log("ERROR MESSAGE: ", errorMessage)}
             <ul className="list-group">
                 {todos.map((todo) => (
                     <li key={todo.id}
