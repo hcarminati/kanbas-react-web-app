@@ -36,26 +36,31 @@ function Account() {
             {account && (
                 <div>
                     <input value={account.password}
+                           placeholder="password"
                            onChange={(e) => setAccount({
                                                            ...account,
                                                            password: e.target.value
                                                        })}/>
                     <input value={account.firstName}
+                           placeholder="first name"
                            onChange={(e) => setAccount({
                                                            ...account,
                                                            firstName: e.target.value
                                                        })}/>
                     <input value={account.lastName}
+                           placeholder="last name"
                            onChange={(e) => setAccount({
                                                            ...account,
                                                            lastName: e.target.value
                                                        })}/>
                     <input value={account.dob}
+                           placeholder="birthday"
                            onChange={(e) => setAccount({
                                                            ...account,
                                                            dob: e.target.value
                                                        })}/>
                     <input value={account.email}
+                           placeholder="email"
                            onChange={(e) => setAccount({
                                                            ...account,
                                                            email: e.target.value
